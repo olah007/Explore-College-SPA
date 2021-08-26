@@ -2,10 +2,16 @@
   <div class="layout">
     <div class="explore college">
       <div class="header">
-        <Header title="Explore Colleges and  Universities" :method="fetchData" />
+        <Header title="Explore Colleges and Universities" 
+          :method="fetchData" 
+          @clearFiltering="clearFiltering" 
+          :collegeList="collegeList" 
+        />
       </div>
       <div class="content">
-        <Content :collegeList="collegeList" :alertMessage="alertMessage"/>
+        <Content 
+          :collegeList="collegeList" 
+        />
       </div>
     </div>
   </div>
@@ -20,8 +26,7 @@ export default {
   data: function() {
     return {
       collegeList: [],
-      store: [],
-      alertMessage: ''
+      store: []
     }
   },
   components: {
@@ -39,16 +44,16 @@ export default {
             let data = await fetch(`https://explore-college-api.herokuapp.com/institutes`)
             data = await data.json()
             if(data == null || data == '' || data.length == 0){
-              return this.alertMessage = "No available record"
+              return this.collegeList = ["No available record"]
         } else {
             this.collegeList = data
             this.store = data
-            this.alertMessage = ''
         }        
       } catch (error) {
         console.log(error)
       }
     },
+    
     async fetchData(value) {
       try {
             const filterData = this.store.filter((item) => item.name === value.toLowerCase())
@@ -60,6 +65,9 @@ export default {
       } catch (error) {
           console.log(error)
       }
+    },
+    clearFiltering() {
+      this.collegeList = this.store;
     }
   }
 }

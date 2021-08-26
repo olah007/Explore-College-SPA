@@ -1,7 +1,14 @@
 <template>
   <div class="cont">
-        <div v-for="college in collegeList" :key="college.id" class="college-card" :style="{ backgroundImage: 'url(' + college.photo_url + ')' }">
-            <span class="fw-bold h4 d-flex align-items-end text-light">{{ college.name }}</span>
+        <div 
+            v-for="college in collegeList" 
+            :key="college.id" 
+            class="college-card" 
+            :style="{ backgroundImage: 'url(' + college.photo_url + ')' }"
+            >
+                <span class="fw-bold h4 d-flex align-items-end text-light">
+                    {{ college.name }}
+                </span>
         </div>
   </div>
       
@@ -10,31 +17,11 @@
 <script>
 export default {
     name: 'Content',
-    data: function() {
-        return {
-            display: false
-        }
-    },
-    props: ['collegeList', 'alertMessage'],
-    methods: {
-        resetList(val) {
-            if (val.length == 1){
-                this.display = true
-            }
-        }
-    }
-
+    props: ['collegeList']
 }
 </script>
 
-<style>
-.college-list {
-    display: grid;
-}
-.image {
-    width: 20em;
-    height: auto;
-}
+<style scoped>
 .cont {
     flex-wrap: wrap;
     display: flex;
@@ -47,7 +34,6 @@ export default {
     display: flex;
     flex: 1 0 23%;
     flex-direction: row;
-    background-image: url('https://worldscholarshipforum.com/wp-content/uploads/2020/10/University-College-London-Denys-Holland-Scholarship.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
