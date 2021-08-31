@@ -57,8 +57,8 @@ export default {
 
     async fetchData(value) {
       try {
-        const filterData = this.store.filter(
-          item => item.name === value.toLowerCase()
+        const filterData = this.store.filter(item =>
+          item.name.includes(value.toLowerCase())
         )
         if (filterData.length > 0) {
           this.collegeList = filterData

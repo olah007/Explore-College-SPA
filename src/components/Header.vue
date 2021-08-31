@@ -11,13 +11,14 @@
         :method="fetchCol"
         class="input"
         v-show="collegeList.length != 1"
+        ref="form"
       />
       <button
         :style="{ marginLeft: '2rem', display: display ? 'block' : 'none' }"
         v-show="collegeList.length == 1"
         type="button"
         class="btn btn-primary"
-        @click="$emit('clearFiltering'), clearField"
+        @click="$emit('clearFiltering'), clearField, resetSearch()"
       >
         Home
       </button>
@@ -51,6 +52,9 @@ export default {
     },
     clearField() {
       this.display = false
+    },
+    resetSearch() {
+      this.$refs.form.resetSearch()
     }
   }
 }
