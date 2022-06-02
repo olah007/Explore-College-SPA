@@ -1,4 +1,5 @@
-# vue-explore-college
+# vue-explore-college 
+This Application get data from Explore-College-API and display it on a Single paged Application.
 
 ## Project setup
 ```
